@@ -178,4 +178,26 @@ fun multiInsertL(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
     }
 }
 
+/*
+    Returns a new list where every instance of old is replaced with new
+ */
+fun multiSubst(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        if (eq(car(list), old)) {
+            return cons(new,  multiSubst(new, old, cdr(list)))
+        } else {
+            return cons(car(list), multiSubst(new, old, cdr(list)))
+        }
+    }
+}
 
+
+fun plus(number1: Int, number2: Int): Int {
+    if (zero(number2)) {
+        return number1
+    } else {
+        return (add1(plus(number2, sub1(number1))))
+    }
+}

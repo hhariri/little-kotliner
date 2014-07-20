@@ -93,3 +93,28 @@ fun eq(atom1: Any, atom2: Any): Boolean {
     return atom1 == atom2
 }
 
+
+/*
+    Adds 1 to given number
+ */
+fun add1(number: Int): Int {
+    return number + 1
+}
+
+/*
+    Subtracts 1 to given number
+ */
+fun sub1(number: Int): Int {
+    if (number == 0) {
+        throw InvalidQuestionException("Cannot ask sub1(0)")
+    }
+    return number - 1
+}
+
+/*
+    Returns true if number is 0, otherwise false
+ */
+fun zero(number: Int): Boolean {
+    return number == 0
+}
+

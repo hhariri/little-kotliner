@@ -13,7 +13,7 @@ public class MultiInsertLTests {
         )
     }
 
-    Test fun multiInsertLInsertsNewToTheLeftOfEveryOld1() {
+    Test fun multiInsertLInsertsNewToTheLeftOfEveryOldAlwaysTerminates() {
         val input = list<Any>("chips", "and", "fish", "or", "fish", "and", "fried")
         assertEquals(list("chips", "and", "fried", "fish", "or", "fried", "fish", "and", "fried"),
                 multiInsertL("fried", "fish", input)
