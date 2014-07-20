@@ -78,6 +78,8 @@ fun atom(expression: Any): Boolean {
     return expression !is ArrayList<*>
 }
 
+
+
 /*
     Returns true if atom1 is equivalent to atom2 and both are non-numeric
  */
@@ -118,3 +120,6 @@ fun zero(number: Int): Boolean {
     return number == 0
 }
 
+fun number(expression: Any): Boolean {
+    return expression is Int && expression >= 0
+}

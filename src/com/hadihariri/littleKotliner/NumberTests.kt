@@ -26,4 +26,13 @@ public class NumberTests {
         val result = plus(10, 20)
         assertEquals(30, result)
     }
+
+    Test fun subtract17and9Gives8() {
+        val result = subtract(17, 9)
+        assertEquals(8, result)
+    }
+
+    Test fun subtract18and25GivesInvalidQuestionException() {
+        failsWith(javaClass<InvalidQuestionException>(), {subtract(18, 25)})
+    }
 }

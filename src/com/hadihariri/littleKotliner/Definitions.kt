@@ -193,11 +193,39 @@ fun multiSubst(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
     }
 }
 
-
+/*
+    Returns the sum of number1 and number2
+ */
 fun plus(number1: Int, number2: Int): Int {
     if (zero(number2)) {
         return number1
     } else {
         return (add1(plus(number2, sub1(number1))))
+    }
+}
+
+/*
+    Returns the subtraction of number2 from number1
+ */
+fun subtract(number1: Int, number2: Int): Int {
+    if (zero(number2)) {
+        return number1
+    } else {
+        return (sub1(subtract(number1, sub1(number2))))
+    }
+}
+
+/*
+    Returns true if list is a list of positive numbers
+ */
+fun tup(list: ArrayList<Any>): Boolean {
+    if (nully(list)) {
+        return true
+    } else {
+        if (number(car(list))) {
+            return tup(cdr(list))
+        } else {
+            return false
+        }
     }
 }
