@@ -2,23 +2,19 @@ package com.hadihariri.littleKotliner.tests
 
 import org.junit.Test
 import com.hadihariri.littleKotliner.*
+import kotlin.test.assertEquals
+import kotlin.test.failsWith
 
 public class CarTests {
 
     Test fun carOnScalarShouldReturnScalar() {
-
-        val list = list<Any>(1, 2, 3, 4, 5)
-
-        test.assertEquals(1, car(list))
-
+        val input = list(1, 2, 3, 4, 5)
+        assertEquals(1, car(input))
     }
 
     Test fun carOnListShouldReturnList() {
-
-        val list = list(list<Any>(1, 2), 3, 4, 5)
-
-        test.assertEquals(arrayListOf(1, 2), car(list))
-
+        val input = list(list(1, 2), 3, 4, 5)
+        assertEquals(arrayListOf(1, 2), car(input))
     }
 
     Test fun carOnAtomShouldNotCompile() {
@@ -28,8 +24,7 @@ public class CarTests {
 
     Test fun carOnEmptyListShouldReturnInvalidQuestion() {
         val input = list<Any>()
-
-        test.failsWith(javaClass<InvalidQuestionException>(), { car(input) })
+        failsWith(javaClass<InvalidQuestionException>(), { car(input) })
     }
 
     Test fun carOnListWithOtherListsShouldReturnFirstElement() {

@@ -25,31 +25,43 @@ fun list<T>(vararg values: T): ArrayList<T> =  values.toCollection(ArrayList(val
 /*
     Returns the first element of a list
  */
-fun car(list: ArrayList<Any>): Any {
-    if (list.empty) {
-        throw InvalidQuestionException("Cannot ask for car on empty list")
+fun car(list: Any): Any {
+    if (list !is ArrayList<*>) {
+        throw InvalidQuestionException("Cannot ask for car on a non-list")
+    } else {
+        if (list.empty) {
+            throw InvalidQuestionException("Cannot ask for car on empty list")
+        }
+        return list.first()!!
     }
-    return list.first()
 }
 
 /*
     Returns a list removing the first element
  */
-fun cdr(list: ArrayList<Any>): ArrayList<Any> {
-    if (list.empty) {
-        throw InvalidQuestionException("Cannot ask for cdr on empty list")
+fun cdr(list: Any): ArrayList<Any> {
+    if (list !is ArrayList<*>) {
+        throw InvalidQuestionException("Cannot ask for car on a non-list")
+    } else {
+        if (list.empty) {
+            throw InvalidQuestionException("Cannot ask for cdr on empty list")
+        }
+        return list.drop(1) as ArrayList<Any>
     }
-    return list.drop(1) as ArrayList<Any>
 }
 
 /*
     Returns a list which is a concatenation of expression and list
  */
-fun cons(expression: Any, list: ArrayList<Any>): ArrayList<Any> {
-    val consList = list<Any>()
-    consList.add(expression)
-    consList.addAll(list)
-    return consList
+fun cons(expression: Any, list: Any): ArrayList<Any> {
+    if (list !is ArrayList<*>) {
+        throw InvalidQuestionException("Cannoy apply cons on a non-list")
+    } else {
+        val consList = list<Any>()
+        consList.add(expression)
+        consList.addAll(list as ArrayList<Any>)
+        return consList
+    }
 }
 
 /*
@@ -126,5 +138,16 @@ fun rember(atom: Any, list: ArrayList<Any>): ArrayList<Any> {
         }  else {
             return cons(car(list), rember(atom, cdr(list)))
         }
+    }
+}
+
+/*
+    Returns a list containing the first element of each list
+ */
+fun firsts(list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        return cons(car(car(list)), firsts(cdr(list)))
     }
 }
