@@ -135,17 +135,47 @@ fun subst2(new: Any, old1: Any, old2: Any, list: ArrayList<Any>): ArrayList<Any>
 /*
     Returns a new list where all occurrences of atom are removed
  */
-fun multirember(atom: Any, list: ArrayList<Any>): ArrayList<Any> {
+fun multiRember(atom: Any, list: ArrayList<Any>): ArrayList<Any> {
     if (nully(list)) {
         return quote()
     } else {
         if (eq(car(list), atom)) {
-            return multirember(atom, cdr(list))
+            return multiRember(atom, cdr(list))
         } else {
-            return cons(car(list), multirember(atom, cdr(list)))
+            return cons(car(list), multiRember(atom, cdr(list)))
         }
     }
 
+}
+
+/*
+    Returns a new list where new is inserted to the right of every instance of old
+*/
+fun multiInsertR(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        if (eq(car(list), old)) {
+            return cons(old, cons(new, multiInsertR(new, old, cdr(list))))
+        } else {
+            return cons(car(list), multiInsertR(new, old, cdr(list)))
+        }
+    }
+}
+
+/*
+    Returns a new list where new is inserted to the left of every instance of old
+*/
+fun multiInsertL(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        if (eq(car(list), old)) {
+            return cons(new, cons(old, multiInsertL(new, old, cdr(list))))
+        } else {
+            return cons(car(list), multiInsertL(new, old, cdr(list)))
+        }
+    }
 }
 
 

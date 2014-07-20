@@ -8,6 +8,6 @@ public class MultiremberTests {
 
     Test fun multiremberRemovesAllInstancesOfAtomFromList() {
         val input = list<Any>("coffee", "cup", "tea", "cup", "and", "hick", "cup")
-        assertEquals(list("coffee", "tea", "and", "hick"), multirember("cup", input))
+        assertEquals(list("coffee", "tea", "and", "hick"), multiRember("cup", input))
     }
 }
