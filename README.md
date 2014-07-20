@@ -6,7 +6,7 @@ Implementation of [The Little Schemer](http://www.amazon.com/The-Little-Schemer-
 ### Purpose
 
 The purpose of this project is a learning exercise to think about functional programming
-with lists, recurssion and composition.
+with lists, recursion and composition.
 
 
 ### Implementation Notes
