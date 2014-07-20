@@ -18,3 +18,9 @@ definitions in Scheme.
 As definitions are being built while going through the book, some might be refactored as
 new definitions appear.
 
+
+### Structure
+
+
+**Primitives** hold all the definitions from the book. Each definition usually has its own
+test classes under **test** folder.
