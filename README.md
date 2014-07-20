@@ -1,7 +1,7 @@
 Little-Kotliner
 ===============
 
-Implementation of The Little Schemer in Kotlin
+Implementation of [The Little Schemer](http://www.amazon.com/The-Little-Schemer-4th-Edition/dp/0262560992) in Kotlin
 
 ### Purpose
 
