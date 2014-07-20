@@ -118,12 +118,12 @@ fun member(atom: Any, list: ArrayList<Any>): Boolean {
     Returns a new list removing atom from list
  */
 fun rember(atom: Any, list: ArrayList<Any>): ArrayList<Any> {
-    if (eq(atom, car(list))) {
-        return cdr(list)
+    if (nully(list)) {
+        return quote()
     } else {
-        if (nully(list)) {
-            return quote()
-        } else {
+        if (eq(car(list), atom)) {
+            return cdr(list)
+        }  else {
             return cons(car(list), rember(atom, cdr(list)))
         }
     }
