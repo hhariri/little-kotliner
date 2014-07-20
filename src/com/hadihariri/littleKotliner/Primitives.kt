@@ -4,22 +4,6 @@ import java.util.ArrayList
 import java.util.LinkedList
 import com.hadihariri.littleKotliner.InvalidQuestionException
 
-/*
-    === Notes ===
-
-    A lot of functions have easier and better ways to be implemented in Kotlin. For instance
-    the function 'lat' could be implemented in Kotlin with:
-
-    return list.firstOrNull { atom(it) == false } == null
-
-    however, we want to remain as true as possible to the original The Little Schemer
- */
-
-
-// TODO: once 'cond' is defined, refactor if/else to use it
-// TODO: once 'or' is defined, refactor things like 'member' to use it. Page 23.
-// TODO: Do we really need to redefine if/else/or? Maybe not...
-
 fun list<T>(vararg values: T): ArrayList<T> =  values.toCollection(ArrayList(values.size))
 
 /*
@@ -62,7 +46,7 @@ fun cdr(list: Any): ArrayList<Any> {
 fun cons(expression: Any, list: Any): ArrayList<Any> {
     when (list) {
         !is ArrayList<*> -> {
-            throw InvalidQuestionException("Cannoy apply cons on a non-list")
+            throw InvalidQuestionException("Cannot apply cons on a non-list")
         }
         else -> {
             val consList = list<Any>()
@@ -110,62 +94,3 @@ fun eq(atom1: Any, atom2: Any): Boolean {
 }
 
 
-/*
-    ========================================================================================
-    Definitions of functions below try and remain as faithful as possible to the original Scheme definitions
-    ========================================================================================
- */
-
-/*
-    Returns true if every element in the list is an atom
- */
-fun lat(list: ArrayList<Any>): Boolean {
-    if (nully(list)) {
-        return true
-    }
-    if (atom(car(list))) {
-        return lat(cdr(list))
-    }
-    return false
-}
-
-/*
-    Returns true if atom is a member of list
- */
-fun member(atom: Any, list: ArrayList<Any>): Boolean {
-    if (nully(list)) {
-        return false
-    } else {
-        if (eq(atom, car(list))) {
-            return true
-        } else {
-            return member(atom, cdr(list))
-        }
-    }
-}
-
-/*
-    Returns a new list removing atom from list
- */
-fun rember(atom: Any, list: ArrayList<Any>): ArrayList<Any> {
-    if (nully(list)) {
-        return quote()
-    } else {
-        if (eq(car(list), atom)) {
-            return cdr(list)
-        }  else {
-            return cons(car(list), rember(atom, cdr(list)))
-        }
-    }
-}
-
-/*
-    Returns a list containing the first element of each list
- */
-fun firsts(list: ArrayList<Any>): ArrayList<Any> {
-    if (nully(list)) {
-        return quote()
-    } else {
-        return cons(car(car(list)), firsts(cdr(list)))
-    }
-}

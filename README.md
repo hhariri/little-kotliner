@@ -22,6 +22,6 @@ new definitions appear.
 ### Structure
 
 
-[**Primitives**](https://github.com/hhariri/little-kotliner/blob/master/src/com/hadihariri/littleKotliner/Primitives.kt) hold all the definitions from the book. Each definition usually has its own
+[**Definitions**](https://github.com/hhariri/little-kotliner/blob/master/src/com/hadihariri/littleKotliner/Definitions.kt) hold all the definitions from the book. Each definition usually has its own
 [test](https://github.com/hhariri/little-kotliner/blob/master/test/com/hadihariri/littleKotliner/tests) classes under **test** folder.
 
