@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/schemer.iml" filepath="$PROJECT_DIR$/schemer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/little-kotliner.iml" filepath="$PROJECT_DIR$/little-kotliner.iml" />
     </modules>
   </component>
 </project>
