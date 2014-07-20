@@ -99,3 +99,53 @@ fun insertL(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
         }
     }
 }
+
+/*
+    Returns a new list where the first occurrence of new is replaced with old
+ */
+fun subst(new: Any, old: Any, list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        if (eq(car(list), old)) {
+            return cons(new, cdr(list))
+        } else {
+            return cons(car(list), subst(new, old, cdr(list)))
+        }
+    }
+
+}
+
+/*
+    Returns a new list where the first occurrence of new is replaced with old
+ */
+fun subst2(new: Any, old1: Any, old2: Any, list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        if (eq(car(list), old1) || eq(car(list), old2)) {
+            return cons(new, cdr(list))
+        } else {
+            return cons(car(list), subst2(new, old1, old2, cdr(list)))
+        }
+    }
+
+}
+
+/*
+    Returns a new list where all occurrences of atom are removed
+ */
+fun multirember(atom: Any, list: ArrayList<Any>): ArrayList<Any> {
+    if (nully(list)) {
+        return quote()
+    } else {
+        if (eq(car(list), atom)) {
+            return multirember(atom, cdr(list))
+        } else {
+            return cons(car(list), multirember(atom, cdr(list)))
+        }
+    }
+
+}
+
+

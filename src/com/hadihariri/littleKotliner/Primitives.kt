@@ -93,4 +93,3 @@ fun eq(atom1: Any, atom2: Any): Boolean {
     return atom1 == atom2
 }
 
-
