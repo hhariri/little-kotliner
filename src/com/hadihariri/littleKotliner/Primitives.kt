@@ -26,13 +26,16 @@ fun list<T>(vararg values: T): ArrayList<T> =  values.toCollection(ArrayList(val
     Returns the first element of a list
  */
 fun car(list: Any): Any {
-    if (list !is ArrayList<*>) {
-        throw InvalidQuestionException("Cannot ask for car on a non-list")
-    } else {
-        if (list.empty) {
-            throw InvalidQuestionException("Cannot ask for car on empty list")
+    when (list) {
+        !is ArrayList<*> -> {
+            throw InvalidQuestionException("Cannot ask for car on a non-list")
         }
-        return list.first()!!
+        else -> {
+            if (list.empty) {
+                throw InvalidQuestionException("Cannot ask for car on empty list")
+            }
+            return list.first()!!
+        }
     }
 }
 
@@ -40,13 +43,16 @@ fun car(list: Any): Any {
     Returns a list removing the first element
  */
 fun cdr(list: Any): ArrayList<Any> {
-    if (list !is ArrayList<*>) {
-        throw InvalidQuestionException("Cannot ask for car on a non-list")
-    } else {
-        if (list.empty) {
-            throw InvalidQuestionException("Cannot ask for cdr on empty list")
+    when (list) {
+        !is ArrayList<*> -> {
+            throw InvalidQuestionException("Cannot ask for car on a non-list")
         }
-        return list.drop(1) as ArrayList<Any>
+        else -> {
+            if (list.empty) {
+                throw InvalidQuestionException("Cannot ask for cdr on empty list")
+            }
+            return list.drop(1) as ArrayList<Any>
+        }
     }
 }
 
@@ -54,13 +60,16 @@ fun cdr(list: Any): ArrayList<Any> {
     Returns a list which is a concatenation of expression and list
  */
 fun cons(expression: Any, list: Any): ArrayList<Any> {
-    if (list !is ArrayList<*>) {
-        throw InvalidQuestionException("Cannoy apply cons on a non-list")
-    } else {
-        val consList = list<Any>()
-        consList.add(expression)
-        consList.addAll(list as ArrayList<Any>)
-        return consList
+    when (list) {
+        !is ArrayList<*> -> {
+            throw InvalidQuestionException("Cannoy apply cons on a non-list")
+        }
+        else -> {
+            val consList = list<Any>()
+            consList.add(expression)
+            consList.addAll(list as ArrayList<Any>)
+            return consList
+        }
     }
 }
 
@@ -89,14 +98,23 @@ fun atom(expression: Any): Boolean {
     Returns true if atom1 is equivalent to atom2 and both are non-numeric
  */
 fun eq(atom1: Any, atom2: Any): Boolean {
-    if (atom1 is ArrayList<*> || atom2 is ArrayList<*>) {
-        throw InvalidQuestionException("Arguments to eq cannot be lists")
+    when {
+        atom1 is ArrayList<*>, atom2 is ArrayList<*> -> {
+            throw InvalidQuestionException("Arguments to eq cannot be lists")
+        }
     }
     if (atom1 !is String || atom2 !is String) {
         throw InvalidQuestionException("Arguments to eq have to be non-numeric atoms")
     }
     return atom1 == atom2
 }
+
+
+/*
+    ========================================================================================
+    Definitions of functions below try and remain as faithful as possible to the original Scheme definitions
+    ========================================================================================
+ */
 
 /*
     Returns true if every element in the list is an atom
